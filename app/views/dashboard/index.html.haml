@@ -1,0 +1,31 @@
+.row
+  .seven.columns.centered
+    %fieldset
+      %legend
+        %h1 Quizzes
+
+      %form
+        .row
+          .three.columns
+            %label.right.inline Quiz #1
+          .nine.columns
+            .six.columns
+              = text_field_tag :quiz, nil, :placeholder => "Grade"
+            .six.columns
+              = text_field_tag :quiz, nil, :placeholder => "Total"
+        .row
+          .three.columns
+            %label.right.inline Quiz #2
+          .nine.columns
+            .six.columns
+              = text_field_tag :quiz, nil, :placeholder => "Grade"
+            .six.columns
+              = text_field_tag :quiz, nil, :placeholder => "Total"
+        .row
+          .three.columns
+            %label.right.inline Quiz #3
+          .nine.columns
+            .six.columns
+              = text_field_tag :quiz, nil, :placeholder => "Grade"
+            .six.columns
+              = text_field_tag :quiz, nil, :placeholder => "Total"

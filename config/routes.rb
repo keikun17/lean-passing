@@ -1,4 +1,6 @@
 LeanPassing::Application.routes.draw do
+  root :to => 'dashboard#index'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
