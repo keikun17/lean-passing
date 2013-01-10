@@ -2,7 +2,10 @@
   .seven.columns.centered
     %fieldset
       %legend
-        %h1 Quizzes
+        %h4 Input your Quiz scores
+
+      %h5.subheader
+        And we will predict your fate this semester
 
       %form
         .row
@@ -29,3 +32,6 @@
               = text_field_tag :quiz, nil, :placeholder => "Grade"
             .six.columns
               = text_field_tag :quiz, nil, :placeholder => "Total"
+      
+    .even
+      = button_tag "Predict", :class => "button twelve columns"

@@ -1,4 +1,5 @@
 @import "foundation/common/ratios";
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300);
 
 // Settings file containing Foundation defaults
 
@@ -25,6 +26,7 @@
 
 // Font Settings
 
+$headerFontFamily: "Open Sans", sans-serif;
 // $fontSmoothing: antialiased;
 // $headerFontFamily: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
 // $headerFontWeight: bold;
