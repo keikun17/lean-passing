@@ -2,36 +2,69 @@
   .seven.columns.centered
     %fieldset
       %legend
-        %h4 Input your Quiz scores
+        %h4 Papasa ka ba?
 
       %h5.subheader
-        And we will predict your fate this semester
+        Enter your scores and we will predict your fate this semester
+
+      .row.tabs
+        .seven.columns
+        .five.columns.tabs
+          %dl.tabs.pill.small{:style => "text-align:center"}
+            %dd.active= link_to "Lecture"
+            %dd= link_to "Laboratory"
 
       %form
         .row
           .three.columns
-            %label.right.inline Quiz #1
+            %label.right.inline Quizzes
           .nine.columns
             .six.columns
-              = text_field_tag :quiz, nil, :placeholder => "Grade"
+              = text_field_tag :quiz, nil, :placeholder => "Score"
             .six.columns
               = text_field_tag :quiz, nil, :placeholder => "Total"
         .row
           .three.columns
-            %label.right.inline Quiz #2
+            %label.right.inline Homeworks
           .nine.columns
             .six.columns
-              = text_field_tag :quiz, nil, :placeholder => "Grade"
+              = text_field_tag :homework, nil, :placeholder => "Score"
             .six.columns
-              = text_field_tag :quiz, nil, :placeholder => "Total"
+              = text_field_tag :homework, nil, :placeholder => "Total"
         .row
           .three.columns
-            %label.right.inline Quiz #3
+            %label.right.inline Project
           .nine.columns
             .six.columns
-              = text_field_tag :quiz, nil, :placeholder => "Grade"
+              = text_field_tag :finals, nil, :placeholder => "Score"
             .six.columns
-              = text_field_tag :quiz, nil, :placeholder => "Total"
+              = text_field_tag :finals, nil, :placeholder => "Total"
+        .row
+          .three.columns
+            %label.right.inline Midterms
+          .nine.columns
+            .six.columns
+              = text_field_tag :finals, nil, :placeholder => "Score"
+            .six.columns
+              = text_field_tag :finals, nil, :placeholder => "Total"
+        .row
+          .three.columns
+            %label.right.inline Finals
+          .nine.columns
+            .six.columns
+              = text_field_tag :finals, nil, :placeholder => "Score"
+            .six.columns
+              = text_field_tag :finals, nil, :placeholder => "Total"
+        .row
+          .eight.columns.centered{:style => "text-align:center"}
+            %label Gaano ka TERROR ang prof?
+        .row
+          .four.columns
+            %label.right.inline 
+          .four.columns
+            = range_field_tag :something, 50, {:min => '1', :max => 100, :style => "width:100%"}
+          .four.columns
+            %label.inline All of it
       
     .even
       = button_tag "Predict", :class => "button twelve columns"
