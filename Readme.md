@@ -1,7 +1,8 @@
 #Papasa ba ko?
 
 ## Screenies
-![Alt text](screenshot_1.png "Optional title")
+
+![A Screenie should be here](https://raw.github.com/keikun17/lean-passing/master/screenshot_1.png "screenie")
 
 ---
 
