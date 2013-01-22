@@ -8,7 +8,7 @@
         Enter your scores and we will predict your fate this semester
       .row.tabs
         .four.columns
-        .five.columns.tabs.right.
+        .five.columns.tabs.right
           %dl.tabs.pill.small.right#class_type_switcher
             %dd.active= link_to "Lecture"
             %dd= link_to "Laboratory"
@@ -18,6 +18,7 @@
         .row
           .three.columns
             %label.right.inline Quizzes
+            // Theory : How eager a student is to pass the subject
           .nine.columns
             .six.columns
               = text_field_tag :quiz, nil, :placeholder => "Score"
@@ -26,6 +27,7 @@
         .row
           .three.columns
             %label.right.inline Homeworks
+            // Theory : Homework measure consistency
           .nine.columns
             .six.columns
               = text_field_tag :homework, nil, :placeholder => "Score"
@@ -34,6 +36,7 @@
         .row
           .three.columns
             %label.right.inline Project
+            // Theory : Projects measure creativity/cunning
           .nine.columns
             .six.columns
               = text_field_tag :finals, nil, :placeholder => "Score"
@@ -42,6 +45,7 @@
         .row
           .three.columns
             %label.right.inline Midterms
+            // See `Finals` below then divide that by zero
           .nine.columns
             .six.columns
               = text_field_tag :finals, nil, :placeholder => "Score"
@@ -50,6 +54,7 @@
         .row
           .three.columns
             %label.right.inline Finals
+            // Measure of a student's capacity to retain useless knowledge
           .nine.columns
             .six.columns
               = text_field_tag :finals, nil, :placeholder => "Score"
@@ -57,6 +62,7 @@
               = text_field_tag :finals, nil, :placeholder => "Total"
         .row
           .eight.columns.centered{:style => "text-align:center"}
+            // Alam naman natin na dito rin bagsak niyan e
             %label Gaano ka TERROR ang prof?
         .row
           .four.columns
