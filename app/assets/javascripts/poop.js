@@ -1,15 +1,17 @@
+var prediction = '';
 $(function () {
-  var prediction = '';
+
   function makePrediction() {
     if(($('#finals_total').val() !== '')){
       prediction = 'E may score ka na ng Finals e, icompute mo nalang.' 
     }
 
-    $('#prediction').text(prediction);
-    $('#predict').hide('fast');
-    $('#prediction').show('fast');
+    if(prediction.length > 0){
+      $('#prediction').text(prediction);
+      $('#predict').hide('slow');
+      $('#prediction').show('fast');
+    };
   }
-
 
   $('#predict').on('click', makePrediction);
 })
