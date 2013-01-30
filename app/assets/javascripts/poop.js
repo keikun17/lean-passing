@@ -31,6 +31,10 @@ $(function () {
     }
   }
 
+  function fetchTerrorLevel() {
+    return "Terror level is " + $('#terror_level').val()
+  }
+
   function makePrediction() {
     var prediction = [] ;
     prediction.push('Default prediction');
@@ -39,6 +43,7 @@ $(function () {
     prediction.push(fetchProject());
     prediction.push(fetchMidterm());
     prediction.push(fetchFinal());
+    prediction.push(fetchTerrorLevel());
 
     if (prediction !== undefined){
       if (prediction.length > 0) {
