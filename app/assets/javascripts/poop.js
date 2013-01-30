@@ -14,20 +14,20 @@ $(function () {
   }
 
   function fetchHomework() {
-    if (($("#homework_total").val() !== '') && ($("#homework_score").val() !== '')) {
+    if (($("#homeworks_total").val() !== '') && ($("#homeworks_score").val() !== '')) {
       return "Uy may homework ka na"
     }
   }
 
   function fetchMidterm() {
-    if (($("#homework_total").val() !== '') && ($("#homework_score").val() !== '')) {
-      return "Uy may midterms ka na"
+    if (($("#midterms_total").val() !== '') && ($("#midterms_total").val() !== '')) {
+      return "Uy may midterm ka na"
     }
   }
 
   function fetchProject() {
-    if (($("#project_total").val() !== '') && ($("#project_score").val() !== '')) {
-      return "Uy may midterms ka na"
+    if (($("#projects_total").val() !== '') && ($("#projects_score").val() !== '')) {
+      return "Uy may project ka na"
     }
   }
 
