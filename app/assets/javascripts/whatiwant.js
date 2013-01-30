@@ -1,3 +1,4 @@
+/*
 // selector : where the message will appear.
 selector.ranges({
 
@@ -24,7 +25,7 @@ selector.ranges({
   {
     from: 81, to: 100,
     message: functionName
-  }]
+  } ]
 
   functionName: function(){
     // Manipulate some thigs
@@ -33,4 +34,4 @@ selector.ranges({
 
 })
 
-
+*/
