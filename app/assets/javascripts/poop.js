@@ -1,34 +1,32 @@
 $(function () {
 
-  function fetchFinal() {
-    if (($('#finals_total').val() !== '')) {
-      return 'E may score ka na ng Finals e, icompute mo nalang.'
-    }
+  function percent(a,b) {
+    return(parseInt(a)/parseInt(b)*100)
   }
 
+  function fetchFinal() {
+    ave = percent( $("#finals_score").val(), $('#finals_total').val() );
+    if ( !isNaN(ave) ) { return(ave) }
+  }
 
   function fetchQuiz() {
-    if (($("#quizzes_total").val() !== '') && ($("#quizzes_score").val() !== '')) {
-      return "Uy may quiz ka na"
-    }
+    ave = percent( $("#quizzes_score").val(), $('#quizzes_total').val() );
+    if ( !isNaN(ave) ) { return(ave) }
   }
 
   function fetchHomework() {
-    if (($("#homeworks_total").val() !== '') && ($("#homeworks_score").val() !== '')) {
-      return "Uy may homework ka na"
-    }
+    ave =  percent ($("#homeworks_score").val() , $("#homeworks_total").val() )
+    if ( !isNaN(ave) ) { return(ave) }
   }
 
   function fetchMidterm() {
-    if (($("#midterms_total").val() !== '') && ($("#midterms_total").val() !== '')) {
-      return "Uy may midterm ka na"
-    }
+    ave =  percent ($("#midterms_score").val() , $("#midterms_total").val() )
+    if ( !isNaN(ave) ) { return(ave) }
   }
 
   function fetchProject() {
-    if (($("#projects_total").val() !== '') && ($("#projects_score").val() !== '')) {
-      return "Uy may project ka na"
-    }
+    ave =  percent ($("#projects_score").val() , $("#projects_total").val() )
+    if ( !isNaN(ave) ) { return(ave) }
   }
 
   function fetchTerrorLevel() {
