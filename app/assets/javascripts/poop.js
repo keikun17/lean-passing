@@ -11,7 +11,7 @@ $(function () {
     var eagerness = 0;
     eagerness_coefficient = 33;
 
-    table = {
+    var table = {
       quiz: 15,
       homework: 5,
       project: 5,
@@ -57,18 +57,10 @@ $(function () {
   }
 
   function getConsistency(){
-    // coefficient_prime = 28;
-    // bs =  fetchQuiz()     * 0.03 ;
-    // bs += fetchHomework() * 0.15 ;
-    // bs += fetchProject()  * 0.02 ;
-    // bs += fetchMidterm()  * 0.05 ;
-    // bs += fetchFinal()    * 0.03 ;
-    // bs = bs / coefficient_prime;
-    // return bs;
     consistency = 0;
     consistency_coefficient = 28;
 
-    table = {
+    var table = {
       quiz: 3,
       homework: 15,
       project: 2,
@@ -114,25 +106,116 @@ $(function () {
   }
 
   function getDiskarte(){
-    coefficient_prime = 24;
-    bs =  fetchQuiz()     * 0.02 ;
-    bs += fetchHomework() * 0.03 ;
-    bs += fetchProject()  * 0.15 ;
-    bs += fetchMidterm()  * 0.02 ;
-    bs += fetchFinal()    * 0.02 ;
-    bs = bs / coefficient_prime;
-    return bs;
+    // coefficient_prime = 24;
+    // bs =  fetchQuiz()     * 0.02 ;
+    // bs += fetchHomework() * 0.03 ;
+    // bs += fetchProject()  * 0.15 ;
+    // bs += fetchMidterm()  * 0.02 ;
+    // bs += fetchFinal()    * 0.02 ;
+    // bs = bs / coefficient_prime;
+    diskarte = 0;
+    diskarte_coefficient = 28;
+
+    var table = {
+      quiz: 2,
+      homework: 3,
+      project: 15,
+      midterm: 2,
+      final: 2 
+    }
+
+    if( isNaN(fetchQuiz()) ){
+      diskarte_coefficient -= table["quiz"];
+    }else{
+      diskarte += fetchQuiz() * table["quiz"];
+    }
+
+    if( isNaN(fetchHomework()) ){
+      diskarte_coefficient -= table["homework"];
+    }else{
+      diskarte += fetchHomework() * table["homework"];
+    }
+
+    if( isNaN(fetchProject()) ){
+      diskarte_coefficient -= table["project"];
+    }else{
+      diskarte += fetchProject() * table["project"];
+    }
+
+
+    if( isNaN(fetchMidterm()) ){
+      diskarte_coefficient -= table["midterm"];
+    }else{
+      diskarte += fetchMidterm() * table["midterm"];
+    }
+
+
+    if( isNaN(fetchFinal()) ){
+      diskarte_coefficient -= table["final"];
+    }else{
+      diskarte += fetchFinal() * table["final"];
+    }
+
+    diskarte = diskarte / (diskarte_coefficient * 100) ;
+
+    return diskarte;
   }
 
   function getUselessKnowledge(){
-    coefficient_prime = 40;
-    bs =  fetchQuiz()     * 0.05 ;
-    bs += fetchHomework() * 0.02 ;
-    bs += fetchProject()  * 0.03 ;
-    bs += fetchMidterm()  * 0.15 ;
-    bs += fetchFinal()    * 0.15 ;
-    bs = bs / coefficient_prime;
-    return bs;
+    // bs =  fetchQuiz()     * 0.05 ;
+    // bs += fetchHomework() * 0.02 ;
+    // bs += fetchProject()  * 0.03 ;
+    // bs += fetchMidterm()  * 0.15 ;
+    // bs += fetchFinal()    * 0.15 ;
+    // bs = bs / coefficient_prime;
+
+    retention = 0;
+    retention_coefficient = 40;
+
+    var table = {
+      quiz: 5,
+      homework: 2,
+      project: 3,
+      midterm: 15,
+      final: 15 
+    }
+
+    if( isNaN(fetchQuiz()) ){
+      retention_coefficient -= table["quiz"];
+    }else{
+      retention += fetchQuiz() * table["quiz"];
+    }
+
+    if( isNaN(fetchHomework()) ){
+      retention_coefficient -= table["homework"];
+    }else{
+      retention += fetchHomework() * table["homework"];
+    }
+
+    if( isNaN(fetchProject()) ){
+      retention_coefficient -= table["project"];
+    }else{
+      retention += fetchProject() * table["project"];
+    }
+
+
+    if( isNaN(fetchMidterm()) ){
+      retention_coefficient -= table["midterm"];
+    }else{
+      retention += fetchMidterm() * table["midterm"];
+    }
+
+
+    if( isNaN(fetchFinal()) ){
+      retention_coefficient -= table["final"];
+    }else{
+      retention += fetchFinal() * table["final"];
+    }
+
+    retention = retention / (retention_coefficient * 100) ;
+
+    return retention;
+
   }
 
   function fetchFinal() {
@@ -174,11 +257,13 @@ $(function () {
 
     var eagerness = getEagerness();
     var consistency = getConsistency();
+    var consistency = getDiskarte();
+    var retention = getUselessKnowledge();
 
     if( !isNaN(eagerness) ){
       console.log("Eagerness : " + eagerness);
       // 1 .. .7
-      if( eagerness <= 1 && eagerness > .8 ){
+      if( eagerness > .8 ){
         prediction.push("(Eagerness++) Wow you really want to pass huh?");
       // .7 .. .5
       }else if( eagerness <= .8 && eagerness > .6){
@@ -190,12 +275,11 @@ $(function () {
         prediction.push("(Eagerness--) I don't think you want to pass this subject enough.")
       }
     };
-
     
     if( !isNaN(consistency) ){
       console.log("Consistency : " + consistency);
       // 1 .. .7
-      if( consistency <= 1 && consistency > .8 ){
+      if( consistency > .8 ){
         prediction.push("(Consistency++) Solid performance!");
       // .7 .. .5
       }else if( consistency <= .8 && consistency > .6){
@@ -208,8 +292,40 @@ $(function () {
       }
     };
 
-    getDiskarte();
-    getUselessKnowledge();
+    if( !isNaN(diskarte) ){
+      console.log("Diskarte : " + diskarte);
+      // 1 .. .7
+      if( diskarte > .8 ){
+        prediction.push("(Diskarte++) ");
+      // .7 .. .5
+      }else if( diskarte <= .8 && diskarte > .6){
+        prediction.push("(Diskarte+) ");
+     // .5 .. .3
+      }else if( diskarte <= .6 && diskarte > .3 ){
+        prediction.push("(Diskarte-)")
+      }else if( diskarte <= .3 ){
+        prediction.push("(Diskarte--)")
+      }
+    };
+
+    console.log(retention);
+    if( !isNaN(retention) ){
+      console.log("Retention : " + retention);
+      // 1 .. .7
+      if( retention > .8 ){
+        prediction.push("(Retention++) ");
+      // .7 .. .5
+      }else if( retention <= .8 && retention > .6){
+        prediction.push("(Retention+) ");
+     // .5 .. .3
+      }else if( retention <= .6 && retention > .3 ){
+        prediction.push("(Retention-)")
+      }else if( retention <= .3 ){
+        prediction.push("(Retention--)")
+      }
+    };
+
+    console.log(prediction);
     fetchTerrorLevel();
 
     if (prediction.length > 0) {
