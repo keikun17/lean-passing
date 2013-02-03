@@ -8,8 +8,8 @@ $(function () {
 
 
   function getEagerness(){
-    bs = 0;
-    coefficient_prime = 33;
+    var eagerness = 0;
+    eagerness_coefficient = 33;
 
     table = {
       quiz: 15,
@@ -20,51 +20,97 @@ $(function () {
     }
 
     if( isNaN(fetchQuiz()) ){
-      coefficient_prime -= table["quiz"];
+      eagerness_coefficient -= table["quiz"];
     }else{
-      bs += fetchQuiz() * table["quiz"];
+      eagerness += fetchQuiz() * table["quiz"];
     }
 
     if( isNaN(fetchHomework()) ){
-      coefficient_prime -= table["homework"];
+      eagerness_coefficient -= table["homework"];
     }else{
-      bs += fetchHomework() * table["homework"];
+      eagerness += fetchHomework() * table["homework"];
     }
 
     if( isNaN(fetchProject()) ){
-      coefficient_prime -= table["project"];
+      eagerness_coefficient -= table["project"];
     }else{
-      bs += fetchProject() * table["project"];
+      eagerness += fetchProject() * table["project"];
     }
 
 
     if( isNaN(fetchMidterm()) ){
-      coefficient_prime -= table["midterm"];
+      eagerness_coefficient -= table["midterm"];
     }else{
-      bs += fetchMidterm() * table["midterm"];
+      eagerness += fetchMidterm() * table["midterm"];
     }
 
 
     if( isNaN(fetchFinal()) ){
-      coefficient_prime -= table["final"];
+      eagerness_coefficient -= table["final"];
     }else{
-      bs += fetchFinal() * table["final"];
+      eagerness += fetchFinal() * table["final"];
     }
 
-    bs = bs / (coefficient_prime * 100) ;
+    eagerness = eagerness / (eagerness_coefficient * 100) ;
 
-    return bs;
+    return eagerness;
   }
 
   function getConsistency(){
-    coefficient_prime = 28;
-    bs =  fetchQuiz()     * 0.03 ;
-    bs += fetchHomework() * 0.15 ;
-    bs += fetchProject()  * 0.02 ;
-    bs += fetchMidterm()  * 0.05 ;
-    bs += fetchFinal()    * 0.03 ;
-    bs = bs / coefficient_prime;
-    return bs;
+    // coefficient_prime = 28;
+    // bs =  fetchQuiz()     * 0.03 ;
+    // bs += fetchHomework() * 0.15 ;
+    // bs += fetchProject()  * 0.02 ;
+    // bs += fetchMidterm()  * 0.05 ;
+    // bs += fetchFinal()    * 0.03 ;
+    // bs = bs / coefficient_prime;
+    // return bs;
+    consistency = 0;
+    consistency_coefficient = 28;
+
+    table = {
+      quiz: 3,
+      homework: 15,
+      project: 2,
+      midterm: 5,
+      final: 3 
+    }
+
+    if( isNaN(fetchQuiz()) ){
+      consistency_coefficient -= table["quiz"];
+    }else{
+      consistency += fetchQuiz() * table["quiz"];
+    }
+
+    if( isNaN(fetchHomework()) ){
+      consistency_coefficient -= table["homework"];
+    }else{
+      consistency += fetchHomework() * table["homework"];
+    }
+
+    if( isNaN(fetchProject()) ){
+      consistency_coefficient -= table["project"];
+    }else{
+      consistency += fetchProject() * table["project"];
+    }
+
+
+    if( isNaN(fetchMidterm()) ){
+      consistency_coefficient -= table["midterm"];
+    }else{
+      consistency += fetchMidterm() * table["midterm"];
+    }
+
+
+    if( isNaN(fetchFinal()) ){
+      consistency_coefficient -= table["final"];
+    }else{
+      consistency += fetchFinal() * table["final"];
+    }
+
+    consistency = consistency / (consistency_coefficient * 100) ;
+
+    return consistency;
   }
 
   function getDiskarte(){
@@ -124,23 +170,44 @@ $(function () {
   }
 
   function makePrediction() {
-    prediction = [];
-    if( !isNaN(getEagerness()) ){
-      console.log("Eagerness : " + getEagerness());
+    prediction = ['Predictions : '];
+
+    var eagerness = getEagerness();
+    var consistency = getConsistency();
+
+    if( !isNaN(eagerness) ){
+      console.log("Eagerness : " + eagerness);
       // 1 .. .7
-      if( getEagerness() <= 1 && getEagerness() > .8 ){
+      if( eagerness <= 1 && eagerness > .8 ){
         prediction.push("(Eagerness++) Wow you really want to pass huh?");
       // .7 .. .5
-      }else if( getEagerness() <= .8 && getEagerness() > .6){
+      }else if( eagerness <= .8 && eagerness > .6){
         prediction.push("(Eagerness+) You are on the right track. Keep your spirits up!");
      // .5 .. .3
-      }else if( getEagerness() <= .6 && getEagerness() > .3 ){
+      }else if( eagerness <= .6 && eagerness > .3 ){
         prediction.push("(Eagerness-) You have to do better than that.")
-      }else if( getEagerness() <= .3 ){
+      }else if( eagerness <= .3 ){
         prediction.push("(Eagerness--) I don't think you want to pass this subject enough.")
       }
     };
-    getConsistency();
+
+    
+    if( !isNaN(consistency) ){
+      console.log("Consistency : " + consistency);
+      // 1 .. .7
+      if( consistency <= 1 && consistency > .8 ){
+        prediction.push("(Consistency++) Solid performance!");
+      // .7 .. .5
+      }else if( consistency <= .8 && consistency > .6){
+        prediction.push("(Consistency+) Those small victories will eventually add up. good job.");
+     // .5 .. .3
+      }else if( consistency <= .6 && consistency > .3 ){
+        prediction.push("(Consistency-) You are bad. and you should feel bad.")
+      }else if( consistency <= .3 ){
+        prediction.push("(Consistency--) You are consistently bad.")
+      }
+    };
+
     getDiskarte();
     getUselessKnowledge();
     fetchTerrorLevel();
