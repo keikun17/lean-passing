@@ -259,74 +259,94 @@ $(function () {
     var consistency = getConsistency();
     var consistency = getDiskarte();
     var retention = getUselessKnowledge();
+    var pass = 0;
+    var fail = 0;
 
     if( !isNaN(eagerness) ){
-      console.log("Eagerness : " + eagerness);
       // 1 .. .7
       if( eagerness > .8 ){
+        pass += 2;
         prediction.push("(Eagerness++) Wow you really want to pass huh?");
       // .7 .. .5
       }else if( eagerness <= .8 && eagerness > .6){
+        pass += 1;
         prediction.push("(Eagerness+) You are on the right track. Keep your spirits up!");
      // .5 .. .3
       }else if( eagerness <= .6 && eagerness > .3 ){
-        prediction.push("(Eagerness-) You have to do better than that.")
+        fail += 1;
+        prediction.push("(Eagerness-) You have to do better than that.");
       }else if( eagerness <= .3 ){
-        prediction.push("(Eagerness--) I don't think you want to pass this subject enough.")
+        fail += 2;
+        prediction.push("(Eagerness--) I don't think you want to pass this subject enough.");
       }
     };
     
     if( !isNaN(consistency) ){
-      console.log("Consistency : " + consistency);
       // 1 .. .7
       if( consistency > .8 ){
+        pass += 2;
         prediction.push("(Consistency++) Solid performance!");
       // .7 .. .5
       }else if( consistency <= .8 && consistency > .6){
+        pass += 1;
         prediction.push("(Consistency+) Those small victories will eventually add up. good job.");
      // .5 .. .3
       }else if( consistency <= .6 && consistency > .3 ){
-        prediction.push("(Consistency-) You are bad. and you should feel bad.")
+        fail += 1;
+        prediction.push("(Consistency-) You are bad. and you should feel bad.");
       }else if( consistency <= .3 ){
-        prediction.push("(Consistency--) You are consistently bad.")
+        fail += 2;
+        prediction.push("(Consistency--) You are consistently bad.");
       }
     };
 
     if( !isNaN(diskarte) ){
-      console.log("Diskarte : " + diskarte);
       // 1 .. .7
       if( diskarte > .8 ){
+        pass += 2;
         prediction.push("(Diskarte++) ");
       // .7 .. .5
       }else if( diskarte <= .8 && diskarte > .6){
+        pass += 1;
         prediction.push("(Diskarte+) ");
      // .5 .. .3
       }else if( diskarte <= .6 && diskarte > .3 ){
-        prediction.push("(Diskarte-)")
+        fail += 1;
+        prediction.push("(Diskarte-)");
       }else if( diskarte <= .3 ){
-        prediction.push("(Diskarte--)")
+        fail += 2;
+        prediction.push("(Diskarte--)");
       }
     };
 
-    console.log(retention);
     if( !isNaN(retention) ){
-      console.log("Retention : " + retention);
       // 1 .. .7
       if( retention > .8 ){
+        pass += 2;
         prediction.push("(Retention++) ");
       // .7 .. .5
       }else if( retention <= .8 && retention > .6){
+        pass += 1;
         prediction.push("(Retention+) ");
      // .5 .. .3
       }else if( retention <= .6 && retention > .3 ){
-        prediction.push("(Retention-)")
+        fail += 1;
+        prediction.push("(Retention-)");
       }else if( retention <= .3 ){
-        prediction.push("(Retention--)")
+        fail += 2;
+        prediction.push("(Retention--)");
       }
     };
 
-    console.log(prediction);
     fetchTerrorLevel();
+
+    if(fail > pass){
+      prediction.push("You will fail.")
+    }else if( fail < pass ){
+      prediction.push("You will pass.")
+    }else{
+      prediction.push("Can't predict your fate.")
+    }
 
     if (prediction.length > 0) {
       $('#prediction').html(prediction.join('<br>'));
