@@ -1,7 +1,7 @@
 $(function () {
 
   prediction = [];
-
+  verdict = [];
   function percent(a,b) {
     return(parseInt(a)/parseInt(b)*100)
   }
@@ -304,18 +304,18 @@ $(function () {
       // 1 .. .7
       if( diskarte > .8 ){
         pass += 2;
-        prediction.push("(Diskarte++) ");
+        prediction.push("(Diskarte++) You are a resourceful person.");
       // .7 .. .5
       }else if( diskarte <= .8 && diskarte > .6){
         pass += 1;
-        prediction.push("(Diskarte+) ");
+        prediction.push("(Diskarte+)");
      // .5 .. .3
       }else if( diskarte <= .6 && diskarte > .3 ){
         fail += 1;
-        prediction.push("(Diskarte-)");
+        prediction.push("(Diskarte-)'The meek shall inherit the earth - but not its minerals'");
       }else if( diskarte <= .3 ){
         fail += 2;
-        prediction.push("(Diskarte--)");
+        prediction.push("(Diskarte--) Bulok diskarte mo.");
       }
     };
 
@@ -323,34 +323,35 @@ $(function () {
       // 1 .. .7
       if( retention > .8 ){
         pass += 2;
-        prediction.push("(Retention++) ");
+        prediction.push("(Retention++) You are a quiz and exams ace!");
       // .7 .. .5
       }else if( retention <= .8 && retention > .6){
         pass += 1;
-        prediction.push("(Retention+) ");
+        prediction.push("(Retention+)  You are good at storing useless knowle... err.. memorizing things. That's great!");
      // .5 .. .3
       }else if( retention <= .6 && retention > .3 ){
         fail += 1;
-        prediction.push("(Retention-)");
+        prediction.push("(Retention-) You need to study harder!");
       }else if( retention <= .3 ){
         fail += 2;
-        prediction.push("(Retention--)");
+        prediction.push("(Retention--) You need to pull of a miracle.");
       }
     };
 
     fetchTerrorLevel();
 
     if(fail > pass){
-      prediction.push("You will fail.")
+      $('#verdict').text('You will fail.').removeClass('success').addClass('alert');
     }else if( fail < pass ){
-      prediction.push("You will pass.")
+      $('#verdict').text('You shall pass.').removeClass('alert').addClass('success');
     }else{
-      prediction.push("Can't predict your fate.")
+      $('#verdict').text('50/50').removeClass('alert').removeClass('success');
     }
 
     if (prediction.length > 0) {
       $('#prediction').html(prediction.join('<br>'));
       // $('#predict').hide('slow');
+      $('#verdict').show('fast');
       $('#prediction').show('fast');
     }
   };

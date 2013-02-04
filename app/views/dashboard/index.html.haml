@@ -60,20 +60,21 @@
               = text_field_tag :finals_score, nil, :placeholder => "Score"
             .six.columns
               = text_field_tag :finals_total, nil, :placeholder => "Total"
-        .row
-          .eight.columns.centered{:style => "text-align:center"}
-            // Theory : Alam naman natin na dito rin bagsak niyan e
-            %label Gaano ka TERROR ang prof?
-        .row
-          .four.columns
-            %label.right.inline 
-              0
-          .four.columns
-            = range_field_tag :terror_level, 50, {:min => '1', :max => 100, :style => "width:100%"}
-          .four.columns
-            %label.inline All of it
+        -# .row
+        -#   .eight.columns.centered{:style => "text-align:center"}
+        -#     // Theory : Alam naman natin na dito rin bagsak niyan e
+        -#     %label Gaano ka TERROR ang prof?
+        -# .row
+        -#   .four.columns
+        -#     %label.right.inline 
+        -#       0
+        -#   .four.columns
+        -#     = range_field_tag :terror_level, 50, {:min => '1', :max => 100, :style => "width:100%"}
+        -#   .four.columns
+        -#     %label.inline All of it
       
     #prediction.alert-box.style{:style => 'display:none'}
+    #verdict.alert-box.style{:style => 'display:none'}
     .even
       = button_tag "Predict", :id => :predict, :class => "button twelve columns"
 
