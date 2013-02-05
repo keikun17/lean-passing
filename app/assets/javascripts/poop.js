@@ -114,7 +114,7 @@ $(function () {
     // bs += fetchFinal()    * 0.02 ;
     // bs = bs / coefficient_prime;
     diskarte = 0;
-    diskarte_coefficient = 28;
+    diskarte_coefficient = 24;
 
     var table = {
       quiz: 2,
@@ -257,7 +257,7 @@ $(function () {
 
     var eagerness = getEagerness();
     var consistency = getConsistency();
-    var consistency = getDiskarte();
+    var diskarte = getDiskarte();
     var retention = getUselessKnowledge();
     var pass = 0;
     var fail = 0;
@@ -266,7 +266,7 @@ $(function () {
       // 1 .. .7
       if( eagerness > .8 ){
         pass += 2;
-        prediction.push("(Eagerness++) Wow you really want to pass huh?");
+        prediction.push("(Eagerness++) 'When a man is willing and eager, the gods will join in' - Aeschylus");
       // .7 .. .5
       }else if( eagerness <= .8 && eagerness > .6){
         pass += 1;
@@ -296,7 +296,7 @@ $(function () {
         prediction.push("(Consistency-) You are bad. and you should feel bad.");
       }else if( consistency <= .3 ){
         fail += 2;
-        prediction.push("(Consistency--) You are consistently bad.");
+        prediction.push("(Consistency--) The only thing you are consistent at is being bad.");
       }
     };
 
@@ -304,18 +304,18 @@ $(function () {
       // 1 .. .7
       if( diskarte > .8 ){
         pass += 2;
-        prediction.push("(Diskarte++) You are a resourceful person.");
+        prediction.push("(Diskarte++) 'Nothing is a waste of time if you use the experience wisely.' - Auguste Rodin");
       // .7 .. .5
       }else if( diskarte <= .8 && diskarte > .6){
         pass += 1;
-        prediction.push("(Diskarte+)");
+        prediction.push("(Diskarte+) 'You can always find a capable helping hand at the end of your own sleeve.' - Zig Ziglar");
      // .5 .. .3
       }else if( diskarte <= .6 && diskarte > .3 ){
         fail += 1;
-        prediction.push("(Diskarte-)'The meek shall inherit the earth - but not its minerals'");
+        prediction.push("(Diskarte-) 'The meek shall inherit the earth - but not its minerals'");
       }else if( diskarte <= .3 ){
         fail += 2;
-        prediction.push("(Diskarte--) Bulok diskarte mo.");
+        prediction.push("(Diskarte--) 'It’s not the lack of resources, it’s your lack of resourcefulness that stops you.' - Tony Robbins");
       }
     };
 
@@ -340,16 +340,18 @@ $(function () {
 
     fetchTerrorLevel();
 
+    console.log(pass);
+    console.log(fail);
     if(fail > pass){
       $('#verdict').text('You will fail.').removeClass('success').addClass('alert');
     }else if( fail < pass ){
       $('#verdict').text('You shall pass.').removeClass('alert').addClass('success');
-    }else{
+    }else if( fail !== 0 && pass !== 0 ){
       $('#verdict').text('50/50').removeClass('alert').removeClass('success');
     }
 
-    if (prediction.length > 0) {
-      $('#prediction').html(prediction.join('<br>'));
+    if (prediction.length > 0 && (pass !== 0 || fail !== 0)) {
+      $('#prediction').html(prediction.join('<br><br>'));
       // $('#predict').hide('slow');
       $('#verdict').show('fast');
       $('#prediction').show('fast');
